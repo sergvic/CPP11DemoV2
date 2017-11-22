@@ -1,4 +1,9 @@
 #include <stdio.h>
+#include <iostream>
+
+#include <functional>
+
+using namespace std;
 
 class SuperCollection
 {
@@ -17,7 +22,7 @@ public:
 
 	int operator[](int i) { return data[i]; }
 
-	int findFirst(bool (*predFuncTest)(int))
+	int findFirst(function<bool (int)> predFuncTest)
 	{
 		for (int i = 0;i < len;i++)
 		{
@@ -35,10 +40,13 @@ bool checkEven(int x)
 void main()
 {
 	SuperCollection col;
-	
-	auto f = [](int x) {return x < 10 ? x % 2 == 0 : x % 3 == 0;};
+	int thresold = 0;
+
+	cin>>thresold;
+
+	auto f = [thresold](int x) {return x > thresold;};
 	
 	int idx = col.findFirst(f);
-
+	
 	printf("Result: %d\n", idx>=0?col[idx]:idx);
 }
