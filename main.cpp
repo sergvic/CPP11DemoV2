@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 
 #include <functional>
 
@@ -45,16 +46,21 @@ function<bool(int)> getChecker(int thresold) {
 void main()
 {
 	SuperCollection col;
-	function<bool(int)> testers[10];
 	
-	for (int i = 0;i < 10;i++) {
+	int len;
+	cin >> len;
+
+	vector<function<bool(int)>> testers;
+	testers.resize(len);
+	
+	for (int i = 0;i < len;i++) {
 		testers[i] = getChecker(i*i);
 	}
 
 	int x = 17;
 	int count = 0;
-	for (int i = 0;i < 10;i++) {
-		if (testers[i](x))
+	for (auto tester: testers) {
+		if (tester(x))
 			count++;
 	}
 	
