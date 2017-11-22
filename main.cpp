@@ -6,6 +6,14 @@
 
 using namespace std;
 
+class Test {
+public:
+	Test(int x, int y) : b(x), a(y) {};
+	
+	int a;
+	int b;
+};
+
 class SuperCollection
 {
 	int data[1000];
@@ -46,6 +54,7 @@ function<bool(int)> getChecker(int thresold) {
 void main()
 {
 	SuperCollection col;
+	Test obj = {3, 5};
 	
 	int len;
 	cin >> len;
